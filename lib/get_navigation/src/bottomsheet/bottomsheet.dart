@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../../../get_core/get_core.dart';
+import '../../../get_instance/get_instance.dart';
+import '../../get_navigation.dart';
 
 class GetModalBottomSheetRoute<T> extends PopupRoute<T> {
   GetModalBottomSheetRoute({
@@ -93,6 +96,15 @@ class GetModalBottomSheetRoute<T> extends PopupRoute<T> {
     );
     if (theme != null) bottomSheet = Theme(data: theme, child: bottomSheet);
     return bottomSheet;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (Get.smartManagement != SmartManagement.onlyBuilder) {
+      WidgetsBinding.instance.addPostFrameCallback(
+          (_) => GetInstance().removeDependencyByRoute("$name"));
+    }
   }
 }
 

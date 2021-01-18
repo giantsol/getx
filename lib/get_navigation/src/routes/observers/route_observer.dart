@@ -201,8 +201,11 @@ class GetObserver extends NavigatorObserver {
     super.didRemove(route, previousRoute);
     final routeName = _extractRouteName(route);
     final currentRoute = _RouteData.ofRoute(route);
+    final newRoute = _RouteData.ofRoute(previousRoute);
 
     Get.log("REMOVING ROUTE $routeName");
+
+    Get.reference = newRoute.name;
 
     _routeSend?.update((value) {
       value.route = previousRoute;

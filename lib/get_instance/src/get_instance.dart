@@ -192,6 +192,7 @@ class GetInstance {
   /// [SmartManagement.keepFactory]
   /// Meant for internal usage of [GetPageRoute] and [GetDialogRoute]
   void removeDependencyByRoute(String routeName) {
+    Get.log('removeDependencyByRoute: $routeName');
     final keysToRemove = <String>[];
     _routesKey.forEach((key, value) {
       if (value == routeName) {
@@ -250,6 +251,7 @@ class GetInstance {
   /// Links a Class instance [S] (or [tag]) to the current route.
   /// Requires usage of [GetMaterialApp].
   void _registerRouteInstance<S>({String tag}) {
+    Get.log('registerRouteInstance of: ${_getKey(S, tag)} to ${Get.reference}');
     _routesKey.putIfAbsent(_getKey(S, tag), () => Get.reference);
   }
 

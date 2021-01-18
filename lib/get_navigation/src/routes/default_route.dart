@@ -35,7 +35,7 @@ class GetPageRoute<T> extends PageRoute<T> {
         assert(barrierDismissible != null),
         assert(maintainState != null),
         assert(fullscreenDialog != null),
-        reference = "$routeName: ${page.hashCode}",
+        reference = settings.name ?? routeName,
         super(settings: settings, fullscreenDialog: fullscreenDialog);
 
   @override
@@ -116,7 +116,6 @@ class GetPageRoute<T> extends PageRoute<T> {
     Animation<double> animation,
     Animation<double> secondaryAnimation,
   ) {
-    //   Get.reference = settings.name ?? routeName;
     Get.reference = reference;
 
     final middlewareRunner = MiddlewareRunner(middlewares);
